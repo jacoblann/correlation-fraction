@@ -161,12 +161,12 @@ if __name__ == '__main__':
     NumPeriods = 252  # default 252
 
     BetaMean = 1
-    BetaStDev = 0.5
+    BetaStDev = 0.25
 
-    Factor1StDev = 0.5 / np.sqrt(NumPeriods)  # default 0.16/sqrt(252)
-    SpecificStDev = 50 / np.sqrt(NumPeriods)  # daily vol from annual
+    Factor1StDev = 0.16 / np.sqrt(NumPeriods)  # default 0.16/sqrt(252)
+    SpecificStDev = 0.5 / np.sqrt(NumPeriods)  # daily vol from annual
     # SpecificStDevStDev = 0.15 / np.sqrt(NumPeriods)  # daily vol from annual
-    SpecificStDevStDev = 0.0001 / np.sqrt(NumPeriods)  # daily vol from annual
+    # SpecificStDevStDev = 0.0001 / np.sqrt(NumPeriods)  # daily vol from annual
     Factor2StDev = .04 / np.sqrt(NumPeriods)
     Factor3StDev = .04 / np.sqrt(NumPeriods)
     Factor4StDev = .08 / np.sqrt(NumPeriods)

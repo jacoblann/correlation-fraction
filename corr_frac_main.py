@@ -126,47 +126,47 @@ SpecificStDevValueList = SpecificStDevNameList / np.sqrt(NumPeriods)
 ###
 FactorRandSeed = 1
 # One factor analysis
-OneFactorFrac = 1
-# 1: One sample test, set BetaStDev=0.25 and SpecificStDev=0.1/sqrt(252), to observe the relationship of AvgCorr and FracVar
-betaChangeDf = pd.DataFrame(columns=BetaStDevList)
-diffPerList = np.zeros((NumExperiments))
-
-CorrAvgList, FracEigshList, DiffPerList = OneSetComparison(FactorRandSeed, NormalFlag, MaxAssets, NumExperiments,
-                                                           NumPeriods, BetaMean, BetaStDevList[0], Factor1StDev,
-                                                           SpecificStDevValueList[-1], OneFactorFlag, OneFactorFrac,
-                                                           Factor2StDev, Factor3StDev, Factor4StDev)
-
-comparison_df = pd.DataFrame(
-    {"PC1: Fraction of Variance Explained": FracEigshList, "Average Correlation": CorrAvgList
-        , "Diff Percentage": DiffPerList
-     })
-comparison_df.to_excel(r'./results/Compare_AvgCorr_FracVar.xlsx', index=False)
-
-# 2: Reduce STD of Beta, to observe the change of difference between AvgCorr and FracVar
-BetaChangeDf = pd.DataFrame(columns=BetaStDevList)
-DiffPerList = np.zeros((NumExperiments))
-for BetaStDev in BetaStDevList:
-    print("OneFactorBetaStDev: ", BetaStDev)
-    CorrAvgList_, FracEigshList_, DiffPerList = OneSetComparison(FactorRandSeed, NormalFlag, MaxAssets,
-                                                                 NumExperiments, NumPeriods, BetaMean, BetaStDev,
-                                                                 Factor1StDev, SpecificStDevValueList[-1],
-                                                                 OneFactorFlag, OneFactorFrac,
-                                                                 Factor2StDev, Factor3StDev, Factor4StDev)
-    BetaChangeDf[BetaStDev] = DiffPerList
-BetaChangeDf.to_excel(r'./results/OneBetaChangeDf.xlsx', index=False)
-
-# 3: Reduce STD of Specific Risk, to observe the change of difference between AvgCorr and FracVar
-SpcChangeDf = pd.DataFrame(columns=SpecificStDevNameList)
-DiffPerList = np.zeros((NumExperiments))
-for (SpecificStDevName, SpecificStDevValue) in zip(SpecificStDevNameList, SpecificStDevValueList):
-    print("OneFactorSpecificStDev: ", SpecificStDevName)
-    CorrAvgList_, FracEigshList_, DiffPerList = OneSetComparison(FactorRandSeed, NormalFlag, MaxAssets,
-                                                                 NumExperiments, NumPeriods, BetaMean,
-                                                                 BetaStDevList[-1], Factor1StDev,
-                                                                 SpecificStDevValue, OneFactorFlag, OneFactorFrac,
-                                                                 Factor2StDev, Factor3StDev, Factor4StDev)
-    SpcChangeDf[SpecificStDevName] = DiffPerList
-SpcChangeDf.to_excel(r'./results/OneSpcChangeDf.xlsx', index=False)
+# OneFactorFrac = 1
+# # 1: One sample test, set BetaStDev=0.25 and SpecificStDev=0.1/sqrt(252), to observe the relationship of AvgCorr and FracVar
+# betaChangeDf = pd.DataFrame(columns=BetaStDevList)
+# diffPerList = np.zeros((NumExperiments))
+#
+# CorrAvgList, FracEigshList, DiffPerList = OneSetComparison(FactorRandSeed, NormalFlag, MaxAssets, NumExperiments,
+#                                                            NumPeriods, BetaMean, BetaStDevList[0], Factor1StDev,
+#                                                            SpecificStDevValueList[-1], OneFactorFlag, OneFactorFrac,
+#                                                            Factor2StDev, Factor3StDev, Factor4StDev)
+#
+# comparison_df = pd.DataFrame(
+#     {"PC1: Fraction of Variance Explained": FracEigshList, "Average Correlation": CorrAvgList
+#         , "Diff Percentage": DiffPerList
+#      })
+# comparison_df.to_excel(r'./results/Compare_AvgCorr_FracVar.xlsx', index=False)
+#
+# # 2: Reduce STD of Beta, to observe the change of difference between AvgCorr and FracVar
+# BetaChangeDf = pd.DataFrame(columns=BetaStDevList)
+# DiffPerList = np.zeros((NumExperiments))
+# for BetaStDev in BetaStDevList:
+#     print("OneFactorBetaStDev: ", BetaStDev)
+#     CorrAvgList_, FracEigshList_, DiffPerList = OneSetComparison(FactorRandSeed, NormalFlag, MaxAssets,
+#                                                                  NumExperiments, NumPeriods, BetaMean, BetaStDev,
+#                                                                  Factor1StDev, SpecificStDevValueList[-1],
+#                                                                  OneFactorFlag, OneFactorFrac,
+#                                                                  Factor2StDev, Factor3StDev, Factor4StDev)
+#     BetaChangeDf[BetaStDev] = DiffPerList
+# BetaChangeDf.to_excel(r'./results/OneBetaChangeDf.xlsx', index=False)
+#
+# # 3: Reduce STD of Specific Risk, to observe the change of difference between AvgCorr and FracVar
+# SpcChangeDf = pd.DataFrame(columns=SpecificStDevNameList)
+# DiffPerList = np.zeros((NumExperiments))
+# for (SpecificStDevName, SpecificStDevValue) in zip(SpecificStDevNameList, SpecificStDevValueList):
+#     print("OneFactorSpecificStDev: ", SpecificStDevName)
+#     CorrAvgList_, FracEigshList_, DiffPerList = OneSetComparison(FactorRandSeed, NormalFlag, MaxAssets,
+#                                                                  NumExperiments, NumPeriods, BetaMean,
+#                                                                  BetaStDevList[-1], Factor1StDev,
+#                                                                  SpecificStDevValue, OneFactorFlag, OneFactorFrac,
+#                                                                  Factor2StDev, Factor3StDev, Factor4StDev)
+#     SpcChangeDf[SpecificStDevName] = DiffPerList
+# SpcChangeDf.to_excel(r'./results/OneSpcChangeDf.xlsx', index=False)
 
 
 ###
